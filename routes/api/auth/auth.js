@@ -61,5 +61,9 @@ router.get('/me', async (req, res) => {
   }
 });
 
+router.delete(('/logout', (req,res) => {
+    res.clearCookie('token');
+    res.end();
+}))
 
 module.exports = router;
