@@ -7,6 +7,6 @@ const userSchema = mongoose.Schema({
     password: String
 });
 
-const UserModel = mongoose.model('user', userSchema); // mongose va générer une collection users au pluriel
+const UserModel = mongoose.model('User', userSchema); // mongose va générer une collection users au pluriel
 
 module.exports = UserModel;

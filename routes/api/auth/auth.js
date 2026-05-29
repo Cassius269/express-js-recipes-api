@@ -2,8 +2,7 @@ const UserModel = require('../../../database/models/user.model');
 const bcrypt = require('bcrypt')
 const router = require('express').Router();
 const jsonwebtoken = require('jsonwebtoken');
-const {key, keyPub} = require('../../../.keys');
-
+const { key, keyPub } = require('../keys'); 
 
 router.post('/', async (req, res) => {
     const {email, password} = req.body;
@@ -61,9 +60,9 @@ router.get('/me', async (req, res) => {
   }
 });
 
-router.delete(('/logout', (req,res) => {
+router.delete('/logout', (req, res) => {
     res.clearCookie('token');
     res.end();
-}))
+});
 
 module.exports = router;
