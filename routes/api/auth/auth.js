@@ -2,7 +2,7 @@ const UserModel = require('../../../database/models/user.model');
 const bcrypt = require('bcrypt')
 const router = require('express').Router();
 const jsonwebtoken = require('jsonwebtoken');
-const {key, keyPub} = require('../../../.keys');
+const {key, keyPub} = require('../keys');
 
 
 router.post('/', async (req, res) => {
@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
         const user = await UserModel.findOne({email}).exec();
 
         if(!user){
-            res.status(404).json({message: "Identifiants invalides"})
+           return res.status(404).json({message: "Identifiants invalides"})
         }
 
         if(user){
@@ -61,9 +61,9 @@ router.get('/me', async (req, res) => {
   }
 });
 
-router.delete(('/logout', (req,res) => {
+router.delete('/logout', (req,res) => {
     res.clearCookie('token');
     res.end();
-}))
+});
 
 module.exports = router;
