@@ -5,7 +5,7 @@ const jsonwebtoken = require('jsonwebtoken');
 const {key, keyPub} = require('../keys');
 
 
-router.post('/', async (req, res) => {
+router.post('/auth', async (req, res) => {
     const {email, password} = req.body;
 
     try {
@@ -57,13 +57,18 @@ router.get('/me', async (req, res) => {
     const { password, __v, ...userToReturn } = currentUser.toObject();
     return res.json(userToReturn);
   } catch (error) {
+        console.error(error);
     return res.json(null);
   }
 });
 
 router.delete('/logout', (req,res) => {
     res.clearCookie('token');
-    res.end();
+    // res.end();
+
+    return res.status(200).json({
+        message: "Logged out",
+    });
 });
 
 module.exports = router;

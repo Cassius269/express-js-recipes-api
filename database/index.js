@@ -8,5 +8,5 @@ mongoose.connect(process.env.MONGO_URI,{
 .then(() => {
     console.log('Connexion DB okay')
 }).catch((error)=>{
-    console.log('Connexion DB échoué', e.message)
+    console.log('Connexion DB échoué', error.message)
 })
