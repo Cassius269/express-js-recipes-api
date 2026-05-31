@@ -11,7 +11,8 @@ const app = express(); // création d'une instance d'Express
 // Actification du cors avant les routes
 app.use(cors({
   origin: ["http://localhost:5173", "https://react-projet-cookchef.onrender.com"],
-  credentials: true
+  credentials: true,
+methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
 }));
 
 
