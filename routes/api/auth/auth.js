@@ -23,14 +23,14 @@ router.post('/auth', async (req, res) => {
                     algorithm:'RS256'
                 });
 
-                res.cookie('token', token, { // persister le token dans les cookies
+                res.cookie('token', token, {
                     httpOnly: true,  
                     sameSite: 'none',
                     secure: true
-                });
+                }); // persister le token dans les cookies
                
                const { password: pwd, __v, ...userToReturn } = user.toObject();
-                res.json(userToReturn);     
+                return res.json(userToReturn);     
             }else {
                 res.status(400).json({message: 'Identifiants invalides'})
             }
