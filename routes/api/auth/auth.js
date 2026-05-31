@@ -44,7 +44,7 @@ router.get('/me', async (req, res) => {
 console.log("COOKIE:", req.cookies);
     res.set('Cache-Control', 'no-store');
     const { token } = req.cookies;
-    // console.log('token', token)
+    console.log('token', token)
     if (!token) {
         return res.json(null);
     }
