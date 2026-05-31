@@ -9,9 +9,10 @@ const app = express(); // création d'une instance d'Express
 
 // Actification du cors avant les routes
 app.use(cors({
-  origin: process.env.URL_API,
+  origin: ["http://localhost:5173", "https://react-projet-cookchef.onrender.com"],
   credentials: true
 }));
+
 
 const routes = require('./routes'); // récupérer les routes
 
