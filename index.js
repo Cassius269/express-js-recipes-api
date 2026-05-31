@@ -1,12 +1,12 @@
 require('dotenv').config(); // charger les variables d'environnement
 
 const express = require('express'); // création de la base de l'application Express
-app.set('trust proxy', 1);
 const cookie = require('cookie-parser');
 const cors = require('cors'); // importation du cors
 require('./database'); // importe et exécute la connexion MongoDB
 
 const app = express(); // création d'une instance d'Express
+app.set('trust proxy', 1);
 
 // Actification du cors avant les routes
 app.use(cors({
