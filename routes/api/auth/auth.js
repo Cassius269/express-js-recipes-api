@@ -68,7 +68,12 @@ console.log("COOKIE:", req.cookies);
 });
 
 router.delete('/logout', (req,res) => {
-    res.clearCookie('token');
+    res.clearCookie('token',{
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+        partitioned: true,
+    });
     // res.end();
 
     return res.status(200).json({
