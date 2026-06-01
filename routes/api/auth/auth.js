@@ -26,7 +26,8 @@ router.post('/auth', async (req, res) => {
                 res.cookie('token', token, {
                     httpOnly: true,  
                     sameSite: 'none',
-                    secure: true
+                    secure: true,
+                    partitioned: true                
                 }); // persister le token dans les cookies
                
                const { password: pwd, __v, ...userToReturn } = user.toObject();
