@@ -1,5 +1,6 @@
 const UserModel = require('../../database/models/user.model');
 const bcrypt = require('bcrypt'); // importer le package de hashage de mot de passe
+const verifyToken  = require('./auth/verifyToken');
 
 // Créer un router
 const router = require('express').Router();
@@ -7,7 +8,7 @@ const router = require('express').Router();
 // Méthode de création de nouvel utilisateur sur la route "/api/users"
 router.post('/', async (req, res) => {
     await verifyToken(req, res);
-    
+
     try{
         // Déconstruire le payload
         const {password, ...otherInfos} = req.body;

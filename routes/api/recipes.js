@@ -1,5 +1,5 @@
 const RecipeModel = require('../../database/models/recipe.model');
-const { default: verifyToken } = require('./auth/verifyToken');
+const verifyToken  = require('./auth/verifyToken');
 
 // Créer un router
 const router = require('express').Router();
@@ -7,7 +7,7 @@ const router = require('express').Router();
 // Méthode de création de nouvel utilisateur sur la route "/api/recipes"
 router.post('/', async (req, res) => {
     await verifyToken(req, res);
-    
+
     try{
         const newUser = new RecipeModel(req.body);
         await newUser.save();

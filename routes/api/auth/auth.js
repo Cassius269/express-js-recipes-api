@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const router = require('express').Router();
 const jsonwebtoken = require('jsonwebtoken');
 const {key, keyPub} = require('../keys');
-const { default: verifyToken } = require('./verifyToken');
+const verifyToken = require('./verifyToken');
 
 
 router.post('/auth', async (req, res) => {
