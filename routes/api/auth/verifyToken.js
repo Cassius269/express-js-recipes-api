@@ -1,3 +1,9 @@
+const UserModel = require('../../../database/models/user.model');
+const jsonwebtoken = require('jsonwebtoken');
+const {key, keyPub} = require('../keys');
+const { default: verifyToken } = require('./verifyToken');
+
+
 const verifyToken = async (req,res) => {
     console.log("COOKIE:", req.cookies);
     res.set('Cache-Control', 'no-store');
@@ -24,4 +30,4 @@ const verifyToken = async (req,res) => {
   }
 }
 
-export default verifyToken();
+export default verifyToken;
