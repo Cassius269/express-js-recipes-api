@@ -6,6 +6,8 @@ const router = require('express').Router();
 
 // Méthode de création de nouvel utilisateur sur la route "/api/users"
 router.post('/', async (req, res) => {
+    await verifyToken(req, res);
+    
     try{
         // Déconstruire le payload
         const {password, ...otherInfos} = req.body;
@@ -41,6 +43,8 @@ router.post('/', async (req, res) => {
 
 // Méthode de recupération des utilisateurs sur la route "/api/users"
 router.get('/', async (req, res) => {
+    await verifyToken(req, res);
+
     try {
         const users = await UserModel.find(); // récupérer tous les utiisateurs
         res.status(200).json(users)
@@ -54,6 +58,8 @@ router.get('/', async (req, res) => {
 
 // Méthode de recupération d'un utilisateur par son Id  sur la route "/api/users/:id"
 router.get('/:id', async (req, res) => {
+    await verifyToken(req, res);
+
     try {
         const user = await UserModel.findById(req.params.id); // récupérer un utilisateur par son Id
          if(!user){
@@ -71,6 +77,8 @@ router.get('/:id', async (req, res) => {
 
 // Méthode de suppression d'un utilisateur sur la route "/api/users/:id"
 router.delete('/:id', async (req, res) => {
+    await verifyToken(req, res);
+
     try {   
         const user = await UserModel.findByIdAndDelete(req.params.id);
         
@@ -90,6 +98,8 @@ router.delete('/:id', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
+    await verifyToken(req, res);
+
     try {
         const { password, ...otherInfos } = req.body;
         let updateData = { ...otherInfos }; 

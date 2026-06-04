@@ -1,10 +1,13 @@
 const RecipeModel = require('../../database/models/recipe.model');
+const { default: verifyToken } = require('./auth/verifyToken');
 
 // Créer un router
 const router = require('express').Router();
 
 // Méthode de création de nouvel utilisateur sur la route "/api/recipes"
 router.post('/', async (req, res) => {
+    await verifyToken(req, res);
+    
     try{
         const newUser = new RecipeModel(req.body);
         await newUser.save();
@@ -30,6 +33,8 @@ router.post('/', async (req, res) => {
 
 // Méthode de recupération des recettes sur la route "/api/recipes"
 router.get('/', async (req, res) => {
+    await verifyToken(req, res);
+
     try {
         const users = await RecipeModel.find(); // récupérer tous les utiisateurs
         res.status(200).json(users)
@@ -43,6 +48,8 @@ router.get('/', async (req, res) => {
 
 // Méthode de recupération d'une recette par son Id  sur la route "/api/recipes/:id"
 router.get('/:id', async (req, res) => {
+    await verifyToken(req, res);
+
     try {
         const recipe = await RecipeModel.findById(req.params.id); // récupérer une recette par son Id
          if(!recipe){
@@ -60,6 +67,8 @@ router.get('/:id', async (req, res) => {
 
 // Méthode de suppression d'une recette sur la route "/api/users/:id"
 router.delete('/:id', async (req, res) => {
+    await verifyToken(req, res);
+
     try {   
         const recipe = await RecipeModel.findByIdAndDelete(req.params.id);
         
@@ -79,6 +88,8 @@ router.delete('/:id', async (req, res) => {
 })
 
 router.patch('/:id', async (req, res) => {
+    await verifyToken(req, res);
+
     try {
         const { createdAt, ...otherInfos } = req.body;
         let updateData = {updatedAt: Date.now(), ...otherInfos }; 
